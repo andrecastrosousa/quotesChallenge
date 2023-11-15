@@ -1,5 +1,6 @@
 package com.andrecastrosousa.service
 
+import com.andrecastrosousa.exception.AuthorRequiredException
 import com.andrecastrosousa.model.Quote
 import com.andrecastrosousa.repository.QuoteRepository
 import java.util.concurrent.Flow.Publisher
@@ -14,6 +15,7 @@ class DefaultQuoteService(private val quoteRepository: QuoteRepository): QuoteSe
     }
 
     override fun findByAuthor(author: String?): Publisher<List<Quote>> {
-        return quoteRepository.findByAuthor(author!!)
+        if(author == null) throw AuthorRequiredException("Author name is necessary.")
+        return quoteRepository.findByAuthor(author)
     }
 }
