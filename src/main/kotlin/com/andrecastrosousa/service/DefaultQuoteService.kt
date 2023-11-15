@@ -6,14 +6,14 @@ import java.util.concurrent.Flow.Publisher
 
 class DefaultQuoteService(private val quoteRepository: QuoteRepository): QuoteService {
     override fun listAll(): Publisher<List<Quote>> {
-        TODO("Not yet implemented")
+        return quoteRepository.findAll()
     }
 
     override fun findById(id: String): Publisher<Quote> {
-        TODO("Not yet implemented")
+        return quoteRepository.findById(id)
     }
 
     override fun findByAuthor(author: String?): Publisher<List<Quote>> {
-        TODO("Not yet implemented")
+        return quoteRepository.findByAuthor(author!!)
     }
 }
