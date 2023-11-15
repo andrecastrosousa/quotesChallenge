@@ -1,3 +1,8 @@
 micronaut:
   application:
     name: quotesChallenge
+db:
+  name: "quotes"
+  collection: "quotes"
+mongodb:
+  uri: mongodb://localhost:27017/quotes

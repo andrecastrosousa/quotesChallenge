@@ -1,18 +1,19 @@
 package com.andrecastrosousa.service
 
 import com.andrecastrosousa.model.Quote
-import java.util.concurrent.Flow
+import com.andrecastrosousa.repository.QuoteRepository
+import java.util.concurrent.Flow.Publisher
 
-class DefaultQuoteService: QuoteService {
-    override fun listAll(): Flow.Publisher<List<Quote>> {
+class DefaultQuoteService(private val quoteRepository: QuoteRepository): QuoteService {
+    override fun listAll(): Publisher<List<Quote>> {
         TODO("Not yet implemented")
     }
 
-    override fun findById(id: String): Flow.Publisher<Quote> {
+    override fun findById(id: String): Publisher<Quote> {
         TODO("Not yet implemented")
     }
 
-    override fun findByAuthor(author: String?): Flow.Publisher<List<Quote>> {
+    override fun findByAuthor(author: String?): Publisher<List<Quote>> {
         TODO("Not yet implemented")
     }
 }
