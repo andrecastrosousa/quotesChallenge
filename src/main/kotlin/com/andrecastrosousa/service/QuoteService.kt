@@ -1,10 +1,11 @@
 package com.andrecastrosousa.service
 
 import com.andrecastrosousa.model.Quote
-import java.util.concurrent.Flow.Publisher
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 interface QuoteService {
-    fun listAll(): Publisher<List<Quote>>
-    fun findById(id: String): Publisher<Quote>
-    fun findByAuthor(author: String?): Publisher<List<Quote>>
+    fun listAll(): Flux<Quote>
+    fun findById(id: String): Mono<Quote>
+    fun findByAuthor(author: String?): Flux<Quote>
 }
