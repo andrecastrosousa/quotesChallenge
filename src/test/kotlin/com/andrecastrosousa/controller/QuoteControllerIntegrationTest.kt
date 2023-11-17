@@ -1,7 +1,6 @@
 package com.andrecastrosousa.controller
 
 import com.andrecastrosousa.model.Quote
-import com.andrecastrosousa.repository.QuoteRepository
 import io.micronaut.core.type.Argument
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpStatus
@@ -30,7 +29,8 @@ class QuoteControllerIntegrationTest(@Client("/") val client: HttpClient) {
     fun `Should get quotes by author name`() {
         val body = client.toBlocking().exchange(
             HttpRequest.GET<Quote>("/api/quotes/search?author=Andre"),
-            Argument.listOf(Quote::class.java))
+            Argument.listOf(Quote::class.java)
+        )
 
         assertNotNull(body)
         assertEquals(HttpStatus.OK, body.status)
@@ -41,7 +41,8 @@ class QuoteControllerIntegrationTest(@Client("/") val client: HttpClient) {
     fun `Should get a quote by a valid id`() {
         val body = client.toBlocking().exchange(
             HttpRequest.GET<Quote>("/api/quotes/5eb17aaeb69dc744b4e7262f"),
-            Argument.of(Quote::class.java))
+            Argument.of(Quote::class.java)
+        )
 
         assertNotNull(body)
         println(body.body())
@@ -53,7 +54,8 @@ class QuoteControllerIntegrationTest(@Client("/") val client: HttpClient) {
         val e = Executable {
             client.toBlocking().exchange(
                 HttpRequest.GET<Quote>("/api/quotes/1"),
-                Argument.of(Quote::class.java))
+                Argument.of(Quote::class.java)
+            )
 
         }
 

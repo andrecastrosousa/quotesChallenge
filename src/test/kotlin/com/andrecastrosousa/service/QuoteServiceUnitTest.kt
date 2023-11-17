@@ -4,7 +4,6 @@ import com.andrecastrosousa.model.Quote
 import com.andrecastrosousa.repository.QuoteMongoRepository
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
-import org.bson.types.ObjectId
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock

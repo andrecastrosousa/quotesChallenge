@@ -2,8 +2,8 @@ package com.andrecastrosousa.repository
 
 import com.andrecastrosousa.model.Quote
 import jakarta.validation.Valid
-import reactor.core.publisher.Mono
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 interface QuoteRepository {
     fun findAll(): Flux<Quote>

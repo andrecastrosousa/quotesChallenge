@@ -11,7 +11,7 @@ import jakarta.inject.Singleton
 @Produces
 @Singleton
 @Requires(classes = [QuoteException::class])
-class QuoteExceptionHandler: ExceptionHandler<QuoteException, HttpResponse<Any>> {
+class QuoteExceptionHandler : ExceptionHandler<QuoteException, HttpResponse<Any>> {
     override fun handle(request: HttpRequest<Any>, exception: QuoteException): HttpResponse<Any> {
         return when (exception.status) {
             HttpStatus.NOT_FOUND -> HttpResponse.notFound(exception.message)

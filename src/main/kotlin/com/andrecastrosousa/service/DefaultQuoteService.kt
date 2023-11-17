@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Singleton
-class DefaultQuoteService(private val quoteRepository: QuoteRepository): QuoteService {
+class DefaultQuoteService(private val quoteRepository: QuoteRepository) : QuoteService {
     override fun listAll(): Flux<Quote> {
         return quoteRepository.findAll()
     }
@@ -21,7 +21,7 @@ class DefaultQuoteService(private val quoteRepository: QuoteRepository): QuoteSe
     }
 
     override fun findByAuthor(author: String?): Flux<Quote> {
-        if(author == null) throw AuthorRequiredException()
+        if (author == null) throw AuthorRequiredException()
         return quoteRepository.findByAuthor(author)
     }
 }

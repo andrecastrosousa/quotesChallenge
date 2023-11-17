@@ -4,6 +4,6 @@ import io.micronaut.context.annotation.ConfigurationProperties
 import io.micronaut.core.naming.Named
 
 @ConfigurationProperties("db")
-interface MongoDbConfiguration: Named {
+interface MongoDbConfiguration : Named {
     val collection: String
 }
