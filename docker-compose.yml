@@ -4,8 +4,4 @@ services:
     ports:
       - '27017:27017'
     environment:
-      MONGO_INITDB_DATABASE: 'quotes'
-  mongo-seed:
-    build: ./
-    depends_on:
-      - mongodb
+      MONGO_INITDB_DATABASE: 'db'

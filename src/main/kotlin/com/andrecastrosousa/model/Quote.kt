@@ -11,7 +11,6 @@ import org.bson.codecs.pojo.annotations.BsonProperty
 import org.bson.types.ObjectId
 
 @Serdeable
-@Introspected
 data class Quote @Creator @BsonCreator constructor(
     @JsonProperty("quote") @BsonProperty("quoteText") val quote: String,
     @JsonProperty("author") @BsonProperty("quoteAuthor") val author: String,

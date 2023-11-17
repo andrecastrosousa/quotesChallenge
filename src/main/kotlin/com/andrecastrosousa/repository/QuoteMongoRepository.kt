@@ -2,10 +2,16 @@ package com.andrecastrosousa.repository
 
 import com.andrecastrosousa.config.MongoDbConfiguration
 import com.andrecastrosousa.model.Quote
+import com.mongodb.BasicDBObject
 import com.mongodb.client.model.Filters.eq
+import com.mongodb.client.model.IndexOptions
+import com.mongodb.client.model.Indexes
 import com.mongodb.reactivestreams.client.MongoClient
 import com.mongodb.reactivestreams.client.MongoCollection
+import jakarta.annotation.PostConstruct
 import jakarta.inject.Singleton
+import org.reactivestreams.Subscriber
+import org.reactivestreams.Subscription
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.util.annotation.NonNull
@@ -36,5 +42,29 @@ class QuoteMongoRepository(
         Mono.from(collection.insertOne(quote))
             .map { true }
             .onErrorReturn(false)
+
+    @PostConstruct
+    fun createIndex() {
+        val weights = BasicDBObject("quoteAuthor", 10)
+
+        collection.createIndex(Indexes.text("quoteAuthor"), IndexOptions().weights(weights))
+            .subscribe(object: Subscriber<String> {
+                override fun onSubscribe(s: Subscription?) {
+                    println("subscribed");
+                }
+
+                override fun onError(t: Throwable?) {
+                    t?.printStackTrace();
+                }
+
+                override fun onComplete() {
+                    println("Completed");
+                }
+
+                override fun onNext(s: String?) {
+                    println("Index %s was created $s");
+                }
+            })
+    }
 
 }

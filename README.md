@@ -11,13 +11,19 @@ To get started with the project, follow these steps:
     ```shell
    docker-compose up -d
 
-4. Run the application:
-    ```shell
-   ./mvnw mn:run
+4. Run script to import data to MongoDB.<br>
+   <i>You can find data in /mongo-seed/quotes.json 
+   as 50.000 quotes from following URL: https://pprathameshmore.github.io/QuoteGarden/#get-quotes </i>
+   ```shell
+   cd mongo-seed && sh import-data.sh
 
-5. Test the application:
+5. Run the application:
     ```shell
-   ./mvnw test
+   ./gradlew run 
+
+6. Test the application:
+    ```shell
+   ./gradlew test
 
 Results of 3 stress test using 50 requests per second, tool used JMeter:
 ![image](https://github.com/andrecastrosousa/quotesChallenge/assets/23742537/fe2175fa-98a9-4492-bb39-ad0a54830397)

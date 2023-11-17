@@ -4,14 +4,11 @@ import com.andrecastrosousa.model.Quote
 import com.andrecastrosousa.repository.QuoteRepository
 import io.micronaut.core.type.Argument
 import io.micronaut.http.HttpRequest
-import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
-import io.micronaut.http.MediaType
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
-import org.bson.types.ObjectId
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
@@ -26,23 +23,24 @@ class QuoteControllerIntegrationTest(@Client("/") val client: HttpClient, privat
 
         assertNotNull(body)
         assertEquals(HttpStatus.OK, body.status)
-        assertEquals(body.body().size, 3)
+        assertEquals(body.body().size, 0)
     }
 
     @Test
     fun `Should get quotes by author name`() {
         val body = client.toBlocking().exchange(
-            HttpRequest.GET<Quote>("/api/quotes"),
+            HttpRequest.GET<Quote>("/api/quotes/search?author=Andre"),
             Argument.listOf(Quote::class.java))
 
         assertNotNull(body)
         assertEquals(HttpStatus.OK, body.status)
+        assertTrue(body.body().isEmpty())
     }
 
     @Test
     fun `Should get an error to request find quote with nonexistentID`() {
         val e = Executable {
-            val body = client.toBlocking().exchange(
+            client.toBlocking().exchange(
                 HttpRequest.GET<Quote>("/api/quotes/1"),
                 Argument.of(Quote::class.java))
 

@@ -3,13 +3,9 @@ package com.andrecastrosousa.controller
 import com.andrecastrosousa.model.Quote
 import com.andrecastrosousa.service.QuoteService
 import com.mongodb.lang.Nullable
-import io.micronaut.http.HttpStatus
-import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.QueryValue
-import io.micronaut.http.annotation.Error
-import io.micronaut.http.annotation.Produces
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
