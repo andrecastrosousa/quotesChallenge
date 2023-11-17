@@ -1,3 +1,6 @@
+## Time spent (around 18h)
+
+
 ## Getting Started
 To get started with the project, follow these steps:
 
