@@ -12,6 +12,7 @@ import org.bson.types.ObjectId
 
 @Serdeable
 data class Quote @Creator @BsonCreator constructor(
+    @BsonId @JsonProperty("id") @BsonProperty("id") val id: String,
     @JsonProperty("quote") @BsonProperty("quoteText") val quote: String,
     @JsonProperty("author") @BsonProperty("quoteAuthor") val author: String,
     @JsonProperty("genre") @BsonProperty("quoteGenre") val genre: String

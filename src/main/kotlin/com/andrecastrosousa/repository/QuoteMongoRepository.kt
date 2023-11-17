@@ -44,27 +44,9 @@ class QuoteMongoRepository(
             .onErrorReturn(false)
 
     @PostConstruct
-    fun createIndex() {
+    fun onStartup() {
         val weights = BasicDBObject("quoteAuthor", 10)
 
         collection.createIndex(Indexes.text("quoteAuthor"), IndexOptions().weights(weights))
-            .subscribe(object: Subscriber<String> {
-                override fun onSubscribe(s: Subscription?) {
-                    println("subscribed");
-                }
-
-                override fun onError(t: Throwable?) {
-                    t?.printStackTrace();
-                }
-
-                override fun onComplete() {
-                    println("Completed");
-                }
-
-                override fun onNext(s: String?) {
-                    println("Index %s was created $s");
-                }
-            })
     }
-
 }

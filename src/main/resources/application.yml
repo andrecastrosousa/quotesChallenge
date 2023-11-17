@@ -1,16 +1,12 @@
 micronaut:
   application:
     name: quotesChallenge
-    http:
-      services:
-        quotes-garden:
-          url: https://quote-garden.onrender.com/
+  http:
+    client:
+      read-timeout: 1m
+
 db:
   name: quotes
   collection: quotes
-quote-garden:
-  path: api/v3/quotes
 mongodb:
-  uri: mongodb://localhost:27017/quotes
-  packages:
-    - com.andrecastrosousa
+  uri: mongodb://localhost:27017/db
