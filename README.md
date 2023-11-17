@@ -18,3 +18,6 @@ To get started with the project, follow these steps:
 5. Test the application:
     ```shell
    ./mvnw test
+
+Results of 3 stress test using 50 requests per second, tool used JMeter:
+![image](https://github.com/andrecastrosousa/quotesChallenge/assets/23742537/fe2175fa-98a9-4492-bb39-ad0a54830397)
