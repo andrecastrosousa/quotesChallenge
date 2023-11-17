@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono
 import reactor.util.annotation.NonNull
 
 @Singleton
-class QuoteMongoRepository(
+open class QuoteMongoRepository(
     private val mongoConfiguration: MongoDbConfiguration,
     private val mongoClient: MongoClient,
 ) : QuoteRepository {
