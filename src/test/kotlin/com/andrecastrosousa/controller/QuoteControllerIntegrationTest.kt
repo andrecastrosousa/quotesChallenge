@@ -38,6 +38,17 @@ class QuoteControllerIntegrationTest(@Client("/") val client: HttpClient, privat
     }
 
     @Test
+    fun `Should get a quote by a valid id`() {
+        val body = client.toBlocking().exchange(
+            HttpRequest.GET<Quote>("/api/quotes/5eb17aaeb69dc744b4e7262f"),
+            Argument.of(Quote::class.java))
+
+        assertNotNull(body)
+        println(body.body())
+        assertEquals(HttpStatus.OK, body.status)
+    }
+
+    @Test
     fun `Should get an error to request find quote with nonexistentID`() {
         val e = Executable {
             client.toBlocking().exchange(
