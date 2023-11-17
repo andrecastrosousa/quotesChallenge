@@ -27,7 +27,6 @@ open class QuoteMongoRepository(
         collection = db.getCollection(mongoConfiguration.collection, Quote::class.java)
     }
 
-    @NonNull
     override fun findAll(): Flux<Quote> = Flux.from(collection.find())
 
 

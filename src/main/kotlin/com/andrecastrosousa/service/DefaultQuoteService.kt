@@ -15,13 +15,13 @@ class DefaultQuoteService(private val quoteRepository: QuoteRepository) : QuoteS
     }
 
     override fun findById(id: String): Mono<Quote> {
-        val quote = quoteRepository.findById(id).blockOptional()
-        if (quote.isEmpty) throw NoQuoteFoundException()
         return quoteRepository.findById(id)
+            .switchIfEmpty(Mono.error(NoQuoteFoundException()))
+
     }
 
     override fun findByAuthor(author: String?): Flux<Quote> {
-        if (author == null) throw AuthorRequiredException()
+        if (author == null || author == "") throw AuthorRequiredException()
         return quoteRepository.findByAuthor(author)
     }
 }
