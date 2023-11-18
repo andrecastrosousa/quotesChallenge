@@ -1,11 +1,13 @@
 package com.andrecastrosousa.service
 
+import com.andrecastrosousa.exception.NoQuoteFoundException
 import com.andrecastrosousa.model.Quote
 import com.andrecastrosousa.repository.QuoteMongoRepository
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
 import reactor.core.publisher.Flux
@@ -39,6 +41,15 @@ class QuoteServiceUnitTest(
             .thenReturn(Mono.just(Quote("1", "test", "test", "test")))
         val quote = quoteService.findById("1").block()
         assertEquals(quote?.id, "1")
+    }
+
+    @Test
+    fun `when get a nonexistent quote throws error`() {
+        whenever(mongoRepository.findById("1"))
+            .thenReturn(Mono.empty())
+        assertThrows<NoQuoteFoundException> {
+            quoteService.findById("1").block()
+        }
     }
 
 
